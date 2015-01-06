@@ -1,2 +1,0 @@
-//timepicker
-$("#timepicker").kendoTimePicker()
