@@ -4,15 +4,21 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
 
+var movies = require('./routes/movies');
 var home = require('./routes/index');
-var about = require('./routes/about');
+var contact = require('./routes/contact');
 
 var app = express();
 
+var dbName = 'movieDB';
+//for prod
+var connectionString = process.env.MONGO_DB;
+mongoose.connect(connectionString);
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
@@ -23,7 +29,21 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', home);
-app.use('/about', about);
+app.use('/contact', contact);
+app.use('/api',movies);
+
+
+
+//register our engine as .html so we can have .html pages
+app.engine('.html', require('ejs').__express);
+
+//set our view engine to HTML
+app.set('view engine', 'html');
+
+app.get('/', function(req, res) {
+  res.render('index');
+});
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
