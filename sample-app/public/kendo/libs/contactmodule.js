@@ -2,68 +2,47 @@ window.Contact = (function($){
 	var _contactModule = {};
 	var _contactViewModel = {};
 
-	$("#timepicker").kendoTimePicker();
-
+	
 	//temporary before RequireJS
 	_contactViewModel = kendo.observable({
-		unit: '',
-		age: 0,
-		height: 0,
-		gender: '',
-		calipers: true,
-		heightDisplay: '(cm)',
-		unitSelect: function() {
-			if(this.get('unit') === 'metric') {
-				this.set('heightDisplay', '(cm)');
-			}
-			else if(this.get('unit') === 'imperial') {
-				this.set('heightDisplay', '(in)');
-			}
-		},
-		saveSettings: function() {
+		fName: '',
+		lName: '',
+		email: '',
+		schedule: '',
+		message: '',
+
+
+		
+		submitContactRequest: function(e){
+
+			e.preventDefault();
+
 			var dataToPost = {
-				unit: _contactViewModel.get('unit'),
-				age: _contactViewModel.get('age'),
-				height: _contactViewModel.get('height'),
-				gender: _contactViewModel.get('gender'),
-				calipers: _contactViewModel.get('calipers')
+				lName: _contactViewModel.get('lName'),
+				fName: _contactViewModel.get('fName'),
+				email: _contactViewModel.get('email'),
+				schedule: _contactViewModel.get('schedule'),
+				message: _contactViewModel.get('message')
 			};
 
 			var serializedDataToPost = JSON.stringify(dataToPost);
 
 			$.ajax({
-				url: '/settings',
-				type: 'put',
+				url: '/api/contacts',
+				type: 'post',
 				data: serializedDataToPost,
 				contentType: 'application/json'
-			}).done(function() {
-				console.log('Settings saved!');
-			}).fail(function() {
-				console.log('Settings failed to save.');
+			}).done(function(data) {
+				$('.alert-success').toggle();
+				$(".success-message").html(data.message);
+			}).fail(function(data) {
+				$('.alert-danger').toggle();
+				$(".fail-message").html(data.message);
 			});
-		},
-		loadSettings: function() {
-			/*$.ajax({
-				url: '/settings',
-				type: 'get',
-				contentType: 'application/json'
-			}).done(function(userData) {
-				if(userData) { //did we actually save data?
-					_contactViewModel.set('unit', userData.unit);
-					_contactViewModel.set('age', userData.age);
-					_contactViewModel.set('height', userData.height);
-					_contactViewModel.set('gender', userData.gender);
-					_contactViewModel.set('calipers', userData.calipers);
-
-					console.log('User settings successfully loaded!')
-				}
-			}).fail(function() {
-				console.log('Something went wrong while loading user settings.');
-			});*/
 		}
 	});
 
-	_contactModule.getSettingsModel = function() {
+	_contactModule.getContactModel = function() {
 		return _contactViewModel;
 	}
 

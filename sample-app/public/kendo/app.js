@@ -9,6 +9,7 @@ window.MIKE = (function($){
 	//set up our views, layout, and routes
 	_MIKE.initSPA = function() {
 
+
 		_baseLayout = new kendo.Layout('base-layout-template');
 
 		_kendoRouter = new kendo.Router();
@@ -19,10 +20,7 @@ window.MIKE = (function($){
 		});		
 
 		_contactView = new kendo.View('contact-view', {
-			model: window.Contact.getSettingsModel(),
-			show: function() {
-				this.model.loadSettings();
-				}
+			model: window.Contact.getContactModel()
 		});
 		
 		_homeView = new kendo.View('home-view', {
@@ -47,16 +45,11 @@ window.MIKE = (function($){
 		_baseLayout.render('#main');
 	}
 
-  //really just used for the main menu
-	_MIKE.wireEvents = function() {
-
-		//highlight what view we are currently on
-		$('#navigation li').on('click', function(e) {
-			$('#navigation li a.menu-selected').removeClass('menu-selected')
-			$(e.target).addClass('menu-selected');
-		});
+	_MIKE.buildScreen = function() {
+		$(document).ready(function() {
+          	$("#timepicker").kendoTimePicker();
+        });
 	}
-
 	_MIKE.selectMenuItem = function() {
 		//this can vary depending on where a user enters the application
 		var currentView = document.URL.split('#/')[1];
@@ -74,9 +67,10 @@ window.MIKE = (function($){
 
 	//start the app
 	_MIKE.startApp = function () {
-		this.initSPA();
-		this.startSPA();
-		this.selectMenuItem();
+			this.initSPA();
+			this.startSPA();
+			this.selectMenuItem();
+			this.buildScreen();
 	}
 
 	return _MIKE;

@@ -6,15 +6,15 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-var movies = require('./routes/movies');
-var home = require('./routes/index');
-var contact = require('./routes/contact');
+var contacts = require('./routes/contact');
 
 var app = express();
 
-var dbName = 'movieDB';
+var dbName = 'contacts';
 //for prod
 var connectionString = process.env.MONGO_DB;
+//for test
+//var connectionString = 'place your connection string here as defined on Modulus';
 mongoose.connect(connectionString);
 
 // view engine setup
@@ -28,11 +28,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', home);
-app.use('/contact', contact);
-app.use('/api',movies);
-
-
+app.use('/api',contacts);
 
 //register our engine as .html so we can have .html pages
 app.engine('.html', require('ejs').__express);
@@ -43,7 +39,6 @@ app.set('view engine', 'html');
 app.get('/', function(req, res) {
   res.render('index');
 });
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
