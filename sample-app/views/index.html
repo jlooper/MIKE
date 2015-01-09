@@ -121,12 +121,12 @@
                 <div class="col-lg-10">
                   <div class="radio">
                     <label>
-                      <input id="status1" data-bind="checked: status, events: { change: unitSelect }" type="radio" name="status" value="hot" checked="">hot
+                      <input id="status1" data-bind="checked: status" type="radio" name="status" value="hot" checked="">hot
                     </label>
                   </div>
                   <div class="radio">
                     <label>
-                      <input  data-bind="checked: status, events: { change: unitSelect }" id="status2" type="radio" name="status" value="not">not                    
+                      <input  data-bind="checked: status" id="status2" type="radio" name="status" value="not">not                    
                     </label>
                   </div>
                 </div>
@@ -135,7 +135,7 @@
                 <label for="alarm-time" class="col-lg-2 control-label">Schedule a house visit</label>
                 <div class="col-lg-10">          
                   <div id="alarm-settings"><span class="alarm-time">
-                      <input id="timepicker" name="schedule" value="10:00 AM"></span></div>
+                      <input id="schedule" name="schedule" data-role="timepicker" data-bind="value: schedule" value="10:00 AM"></span></div>
                 </div>
               </div>
               <div class="form-group">

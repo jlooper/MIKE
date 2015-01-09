@@ -9,6 +9,7 @@ window.Contact = (function($){
 		lName: '',
 		email: '',
 		schedule: '',
+		status: '',
 		message: '',
 
 
@@ -22,6 +23,7 @@ window.Contact = (function($){
 				fName: _contactViewModel.get('fName'),
 				email: _contactViewModel.get('email'),
 				schedule: _contactViewModel.get('schedule'),
+				status: _contactViewModel.get('status'),
 				message: _contactViewModel.get('message')
 			};
 

@@ -45,11 +45,7 @@ window.MIKE = (function($){
 		_baseLayout.render('#main');
 	}
 
-	_MIKE.buildScreen = function() {
-		$(document).ready(function() {
-          	$("#timepicker").kendoTimePicker();
-        });
-	}
+	
 	_MIKE.selectMenuItem = function() {
 		//this can vary depending on where a user enters the application
 		var currentView = document.URL.split('#/')[1];
@@ -70,7 +66,6 @@ window.MIKE = (function($){
 			this.initSPA();
 			this.startSPA();
 			this.selectMenuItem();
-			this.buildScreen();
 	}
 
 	return _MIKE;
