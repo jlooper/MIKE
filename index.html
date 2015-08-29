@@ -2,20 +2,56 @@
 <html>
   <head>
     <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Welcome to the MIKE Stack!</title>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">  
     <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.min.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-
+    
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
-    <title>Mike by jlooper</title>
   </head>
-
   <body>
-    Temporary page for Mike-Stack.com
+    <header>
+      <nav role="navigation" class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" data-toggle="collapse" data-target="#navbar-collapse" class="navbar-toggle">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div id="navbar-collapse" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="home active"><a href="/#/">Home</a></li>
+            <li class="contact"><a href="/#/contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    </header>
+    <section id="content">
+    <div class="view-content">
+      <div class="container">
+      <div class="well">
+        <h1 align="center">Introducing the MIKE stack</h1>
+        <img class="img-responsive centered" src="/images/mike_badge_sm.png"/>
+      </div>
+      <div class="well">
+        <h4>A man of the people, Mike also has a soft side.</h4>
+        <p>Built with:</p>
+        <p><a href="https://www.mongodb.org/"><b class="highlight">M</b>ongoDB</a> - for a no-sql database, hosted on Modulus</p>
+        <p><a href="https://iojs.org/"><b class="highlight">i</b>o.js</a> - for the server-side, a fork of <a href="http://nodejs.org/">Node</a> (or you can simply use Node)</p>
+        <p><a href="http://www.telerik.com/kendo-ui"><b class="highlight">K</b>endo UI</a> - for the front end widgets and client-side routing</p>
+        <p><a href="http://expressjs.com/"><b class="highlight">E</b>xpress</a> - for the web tier and managing the server-side API construction and routing</p>
+      </div>
+    </div>
+    </div>
+
+    </section>
+    <footer class="footer">
+      <p class="footer-text">A Project of Ladeez First Media. Visit us at <a href="http://www.ladeezfirstmedia.com">online</a> or follow us on Twitter @jenlooper.</p>
+    </footer>
   </body>
 </html>
