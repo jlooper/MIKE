@@ -1,0 +1,49 @@
+/*sticky footer*/
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+button {
+    margin: 0 10px 0 10px !important;
+}
+img.centered {
+  display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+.footer-text {
+  text-align:center;
+  padding-top:10px;
+}
+.highlight{
+  color:#B14437;
+}
+span.k-timepicker{
+    width:100%;
+}
+/*validation*/
+.form-group.required .control-label:after {
+  content:"*";
+  color:#e74c3c;
+}
+span.k-widget.k-tooltip-validation {
+    color: white;
+    background-color:#e74c3c;
+    border-color:#e74c3c;
+    padding:8px;
+    margin:3px;
+}

@@ -1,0 +1,255 @@
+<script type="text/x-kendo-template" id="list-view">
+    <div class="view-content">    
+    <div class="container content">
+      <div class="row">
+        <div class="col-sm-12">
+          <h2>Let's make a list!</h2>
+
+          <p>Here's a simple example of a way to create and delete elements from a grid-like object (actually a listView). Let's create some recipes!</p>
+
+          <form id="recipeForm" class="form-horizontal">
+          
+          <div class="alert alert-dismissable alert-success" style="display:none">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>Well done! </strong><span class="success-message"></span>.
+          </div>
+          <div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;
+          </div>
+          <div class="alert alert-dismissable alert-danger" style="display:none">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <strong>Oops! </strong><span class="failure-message"></span>.
+          </div>
+          <div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;
+          </div>
+            
+          <div class="k-content wide">
+            <table class="table table-bordered">
+              <thead> 
+                <tr> 
+                  <th>Recipe Name</th> 
+                  <th>Time to Cook</th> 
+                  <th>Oven Temperature</th>
+                  <th>Ingredients</th>
+                  <th>Procedure</th>
+                  <th>Remove?</th>
+                </tr> 
+              </thead>
+              <tbody id="recipeListView"></tbody>
+            </table>
+          </div>
+
+          <fieldset>
+
+      <div class="well">
+              
+          <div class="form-group required ">
+
+                <div class="col-lg-2 control-label">
+                  <label>Recipe Name</label>
+                </div>
+                <div class="col-lg-2">                  
+                  <input id="rName" required data-bind="value: rName"  name="rName" type="text" placeholder="Recipe Name" class="form-control" validationMessage="Please add a recipe name">
+                </div>
+                 
+                <div class="col-lg-2 control-label">
+                  <label>Time Needed to Cook (minutes)</label>
+                </div> 
+                <div class="col-lg-2">
+                    <input id="time"  required data-bind="value: time"  name="time" type="number" validationMessage="Please add the time needed to cook" placeholder="How long?" class="form-control">
+                </div>
+
+                <div class="col-lg-2 control-label">
+                  <label>Oven Temperature</label>
+                </div> 
+                <div class="col-lg-2">
+                    <input id="heat"  required data-bind="value: heat"  name="heat" type="number" validationMessage="Please add the oven or stove temperature" placeholder="How hot?" class="form-control">
+                </div>
+
+          </div> 
+
+          <div class="form-group required">   
+                
+                <div class="col-lg-2 control-label">
+                 <label>Add</label>
+                </div>
+                  
+                <div class="col-lg-2">                   
+                        <input data-bind="value: ing1num" required name="ing1num" type="number" class="form-control" id="ing1num" placeholder=0 validationMessage="Please add how many">                       
+                </div>
+
+                <div class="col-lg-2 control-label">
+                 <label>Quantity</label>
+                </div>
+
+                <div class="col-lg-2">                   
+                         <select data-bind="value: ing1unit"  class="form-control" id="ing1unit" name="ing1unit">
+                          <option value="">Please Select</option>                          
+                          <option value="">--</option>
+                          <option value="tsp">Teaspoon</option>
+                          <option value="tbsp">Tablespoon</option>
+                          <option value="cup">Cup</option>
+                        </select>                     
+                </div>
+
+                <div class="col-lg-2 control-label">
+                 <label>Ingredient</label>
+                </div>
+                  
+                  <div class="col-lg-2">
+                    
+                        <select  required data-bind="value: ing1" required validationMessage="Please add an ingredient"  class="form-control" id="ing1" name="ing1">
+                          <option value="">Please Select</option>                          
+                          <option value="egg">Egg</option>
+                          <option value="milk">Milk</option>
+                          <option value="flour">Flour</option>
+                          <option value="sugar">Sugar</option>
+                          <option value="butter">Butter</option>
+                          <option value="bread">Bread</option>
+                          <option value="chicken_breasts">Chicken breasts</option>
+                          <option value="chicken_legs">Chicken legs</option>
+                          <option value="beef">Beef</option>
+                          <option value="ham">Ham</option>
+                          <option value="cheese">Cheese</option>
+                          <option value="broccoli">Broccoli</option>
+                          <option value="carrots">Carrots</option>
+                          <option value="green_peppers">Green Peppers</option>
+                          <option value="salt">Salt</option>
+                          <option value="pepper">Pepper</option>
+                        </select>
+                  </div>
+
+
+          </div>
+
+          <div class="form-group required">   
+                
+                <div class="col-lg-2 control-label">
+                 <label>Add</label>
+                </div>
+                  
+                <div class="col-lg-2">                   
+                        <input required validationMessage="Please add how many" data-bind="value: ing2num" name="ing2num" type="number" class="form-control" id="ing2num" placeholder=0>                       
+                </div>
+
+                <div class="col-lg-2 control-label">
+                 <label>Quantity</label>
+                </div>
+
+                <div class="col-lg-2">                   
+                         <select data-bind="value: ing2unit" class="form-control" id="ing2unit" name="ing2unit">
+                          <option value="">Please Select</option>                          
+                          <option value="">--</option>
+                          <option value="tsp">Teaspoon</option>
+                          <option value="tbsp">Tablespoon</option>
+                          <option value="cup">Cup</option>
+                        </select>                     
+                </div>
+
+                <div class="col-lg-2 control-label">
+                 <label>Ingredient</label>
+                </div>
+                  
+                  <div class="col-lg-2">
+                    
+                        <select required data-bind="value: ing2" required validationMessage="Please add an ingredient"  class="form-control" id="ing2" name="ing2">
+                          <option value="">Please Select</option>                          
+                          <option value="egg">Egg</option>
+                          <option value="milk">Milk</option>
+                          <option value="flour">Flour</option>
+                          <option value="sugar">Sugar</option>
+                          <option value="butter">Butter</option>
+                          <option value="bread">Bread</option>
+                          <option value="chicken_breasts">Chicken breasts</option>
+                          <option value="chicken_legs">Chicken legs</option>
+                          <option value="beef">Beef</option>
+                          <option value="ham">Ham</option>
+                          <option value="cheese">Cheese</option>
+                          <option value="broccoli">Broccoli</option>
+                          <option value="carrots">Carrots</option>
+                          <option value="green_peppers">Green Peppers</option>
+                          <option value="salt">Salt</option>
+                          <option value="pepper">Pepper</option>
+                        </select>
+                  </div>
+
+
+          </div>
+
+          <div class="form-group required">   
+                
+                <div class="col-lg-2 control-label">
+                 <label>Add</label>
+                </div>
+                  
+                <div class="col-lg-2">                   
+                        <input required validationMessage="Please add how many" data-bind="value: ing3num" name="ing3num" type="number" class="form-control" id="ing3num" placeholder=0>                       
+                </div>
+
+                <div class="col-lg-2 control-label">
+                 <label>Quantity</label>
+                </div>
+
+                <div class="col-lg-2">                   
+                         <select data-bind="value: ing3unit" class="form-control" id="ing3unit" name="ing3unit">
+                          <option value="">Please Select</option>                          
+                          <option value="">--</option>
+                          <option value="tsp">Teaspoon</option>
+                          <option value="tbsp">Tablespoon</option>
+                          <option value="cup">Cup</option>
+                        </select>                     
+                </div>
+
+                <div class="col-lg-2 control-label">
+                 <label>Ingredient</label>
+                </div>
+                  
+                  <div class="col-lg-2">
+                    
+                        <select required data-bind="value: ing3" required validationMessage="Please add an ingredient"  class="form-control" id="ing3" name="ing3">
+                          <option value="">Please Select</option>                          
+                          <option value="egg">Egg</option>
+                          <option value="milk">Milk</option>
+                          <option value="flour">Flour</option>
+                          <option value="sugar">Sugar</option>
+                          <option value="butter">Butter</option>
+                          <option value="bread">Bread</option>
+                          <option value="chicken_breasts">Chicken breasts</option>
+                          <option value="chicken_legs">Chicken legs</option>
+                          <option value="beef">Beef</option>
+                          <option value="ham">Ham</option>
+                          <option value="cheese">Cheese</option>
+                          <option value="broccoli">Broccoli</option>
+                          <option value="carrots">Carrots</option>
+                          <option value="green_peppers">Green Peppers</option>
+                          <option value="salt">Salt</option>
+                          <option value="pepper">Pepper</option>
+                        </select>
+                  </div>
+
+
+          </div>
+
+          <div class="form-group required">
+            <label for="procedure" class="col-lg-2 control-label">Procedure</label>
+                <div class="col-lg-10">
+                  <textarea required id="procedure" data-bind="value: procedure" name="procedure" validationMessage="Please tell us how to make this recipe" rows="3" class="form-control"></textarea>                                 
+                </div>
+          </div>
+          
+               
+            
+          <div>
+                  <button type="submit" class="btn btn-primary" data-bind="click: submitListRequest">Add a recipe</button>
+          </div>
+
+          </div>
+
+          </fieldset>
+          
+          </form>
+
+        </div>
+      </div>
+    </div>
+    </div>
+  </script>

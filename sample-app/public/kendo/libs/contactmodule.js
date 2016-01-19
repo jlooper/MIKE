@@ -9,7 +9,7 @@ window.Contact = (function($){
 		lName: '',
 		email: '',
 		schedule: '',
-		status: '',
+		phone: '',
 		message: '',
 
 
@@ -23,12 +23,16 @@ window.Contact = (function($){
 				fName: _contactViewModel.get('fName'),
 				email: _contactViewModel.get('email'),
 				schedule: _contactViewModel.get('schedule'),
-				status: _contactViewModel.get('status'),
+				phone: _contactViewModel.get('phone'),
 				message: _contactViewModel.get('message')
 			};
 
 			var serializedDataToPost = JSON.stringify(dataToPost);
 
+			var validator = $("#contactForm").kendoValidator().data("kendoValidator");
+            
+            if (validator.validate()) {
+			
 			$.ajax({
 				url: '/api/contacts',
 				type: 'post',
@@ -41,6 +45,11 @@ window.Contact = (function($){
 				$('.alert-danger').toggle();
 				$(".fail-message").html(data.message);
 			});
+
+			} else {
+                $('.alert-danger').toggle();
+				$(".failure-message").html("Sorry, you seem to be missing some information. Please correct the errors before proceeding");
+            }
 		}
 	});
 

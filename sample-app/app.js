@@ -1,43 +1,37 @@
 var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 var contacts = require('./routes/contact');
+var lists = require('./routes/list');
+
+var connectionString = process.env.MONGO_URL || 'mongodb://localhost:27017/mike';
+
+mongoose.connect(connectionString, function (err, res) {
+  if (err) { 
+    console.log ('ERROR connecting to: ' + connectionString + '. ' + err);
+  } else {
+    console.log ('Succeeded connected to: ' + connectionString);
+  }
+});
 
 var app = express();
 
-var dbName = 'contacts';
-//for prod
-var connectionString = process.env.MONGO_DB;
-//for test
-//var connectionString = 'place your connection string here as defined on Modulus';
-mongoose.connect(connectionString);
+app.set('port', (process.env.PORT || 5000));
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-
-// uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
-app.use(logger('dev'));
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// views is directory for all template files
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
 
 app.use('/api',contacts);
-
-//register our engine as .html so we can have .html pages
-app.engine('.html', require('ejs').__express);
-
-//set our view engine to HTML
-app.set('view engine', 'html');
+app.use('/api',lists);
 
 app.get('/', function(req, res) {
-  res.render('index');
+  res.render('pages/index');
 });
 
 // catch 404 and forward to error handler
@@ -47,29 +41,6 @@ app.use(function(req, res, next) {
     next(err);
 });
 
-// error handlers
-
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
-        res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err
-        });
-    });
-}
-
-// production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
 });
-
-
-module.exports = app;

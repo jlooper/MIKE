@@ -1,0 +1,88 @@
+<script type="text/x-kendo-template" id="contact-view">
+    <div class="view-content"> 
+    <div class="container content">
+      <div class="row">
+        <div class="col-sm-12">
+          <h2>Have a question? Contact us</h2>
+          <p>Here's a simple example of a contact form, with data being fed to Mongo</p>
+          <form id="contactForm" class="form-horizontal well">         
+                <div class="alert alert-dismissable alert-success" style="display:none">
+                  <button type="button" class="close" data-dismiss="alert">×</button>
+                  <strong>Well done! </strong><span class="success-message"></span>.
+                </div>
+                <div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;
+                </div>
+                <div class="alert alert-dismissable alert-danger" style="display:none">
+                  <button type="button" class="close" data-dismiss="alert">×</button>
+                  <strong>Oops! </strong><span class="failure-message"></span>.
+                </div>
+                <div id="source-button" class="btn btn-primary btn-xs" style="display: none;">&lt; &gt;
+                </div>
+            <fieldset>            
+              <div class="form-group required">
+                <label for="fName" class="col-lg-2 control-label">Your First Name</label>
+                <div class="col-lg-6">
+                  <input id="fName" required validationMessage="Enter your first name"  data-bind="value: fName"  name="fName" type="text" placeholder="First Name" class="form-control">                                  
+                </div>
+                <div class="col-lg-4">
+                  <span class="k-invalid-msg" data-for="fName"></span>
+                </div>  
+              </div>
+              <div class="form-group required">
+                <label for="lName" class="col-lg-2 control-label">Your Last Name</label>
+                <div class="col-lg-6">
+                  <input id="fName" required validationMessage="Enter your last name"  data-bind="value: lName"  name="lName" type="text" placeholder="Last Name" class="form-control">                                  
+                </div>
+                <div class="col-lg-4">
+                  <span class="k-invalid-msg" data-for="lName"></span>
+                </div>  
+              </div>
+              <div class="form-group required">
+                <label for="email" class="col-lg-2 control-label">Your Email</label>
+                <div class="col-lg-6">
+                  <input id="email" required validationMessage="Enter your email address"  data-bind="value: email"  name="email" type="text" placeholder="Email" class="form-control">                                  
+                </div>
+                <div class="col-lg-4">
+                  <span class="k-invalid-msg" data-for="email"></span>
+                </div>  
+              </div>
+              <div class="form-group required">
+                <label for="phone" class="col-lg-2 control-label">Your Phone Number</label>
+                <div class="col-lg-6">
+                  <input id="phone" required validationMessage="Enter your phone" data-role="maskedtextbox" data-bind="value: phone" data-mask="(999) 000-0000" name="phone" type="text" placeholder="Daytime Phone" class="form-control">                                  
+                </div>
+                <div class="col-lg-4">
+                  <span class="k-invalid-msg" data-for="phone"></span>
+                </div>  
+              </div>
+              <div class="form-group required">
+                <label for="schedule" class="col-lg-2 control-label">Best time to call</label>
+                <div class="col-lg-6">
+                  <input id="schedule" required name="schedule" data-role="timepicker" data-bind="value: schedule" value="10:00 AM">                                 
+                </div>
+                <div class="col-lg-4">
+                  <span class="k-invalid-msg" data-for="schedule"></span>
+                </div>  
+              </div>
+              <div class="form-group required">
+                <label for="message" class="col-lg-2 control-label">Message</label>
+                <div class="col-lg-6">
+                  <textarea required id="message" data-bind="value: message" name="message" rows="3" class="form-control"></textarea>                                 
+                </div>
+                <div class="col-lg-4">
+                  <span class="k-invalid-msg" data-for="message"></span>
+                </div>  
+              </div>                         
+              <div class="form-group">
+                <div class="col-lg-10 col-lg-offset-2">
+                  <button class="btn btn-default btn-lg">Cancel</button>
+                  <button type="submit" class="btn btn-primary btn-lg" data-bind="click: submitContactRequest">Submit</button>
+                </div>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+    </div>
+  </script>

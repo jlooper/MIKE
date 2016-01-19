@@ -5,8 +5,8 @@ var contactSchema = new Schema({
   fName: String,
   lName: String,
   email: String,
-  status: String,
   schedule: String,
+  phone: String,
   message: String
 });
  
