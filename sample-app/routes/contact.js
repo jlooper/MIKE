@@ -16,10 +16,9 @@ router.route('/contacts')
 
     .post(function(req,res){
         var contact=new Contact(req.body);
-        console.log(contact)
         contact.save(function(err){
             if(err)
-                res.send(err);
+                return res.send(err);
             res.send({message:'Contact Request submitted'});
         });
     });

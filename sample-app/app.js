@@ -5,10 +5,10 @@ var mongoose = require('mongoose');
 var contacts = require('./routes/contact');
 var lists = require('./routes/list');
 
-var connectionString = process.env.MONGO_URL || 'mongodb://localhost:27017/mike';
+var connectionString = process.env.MONGO_DB || 'mongodb://localhost:27017/mike';
 
 mongoose.connect(connectionString, function (err, res) {
-  if (err) { 
+  if (err) {
     console.log ('ERROR connecting to: ' + connectionString + '. ' + err);
   } else {
     console.log ('Succeeded connected to: ' + connectionString);
